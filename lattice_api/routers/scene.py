@@ -4,9 +4,9 @@ from typing import Dict
 
 from fastapi import APIRouter, File, HTTPException, UploadFile, status
 
-from app.models import SceneResponse
-from app.services.cif import ensure_cif_extension, ensure_size_limit, parse_cif_bytes
-from app.services.scene import structure_to_scene_dict
+from lattice_api.models import SceneResponse
+from lattice_api.services.cif import ensure_cif_extension, ensure_size_limit, parse_cif_bytes
+from lattice_api.services.scene import structure_to_scene_dict
 
 
 router = APIRouter(prefix="/api", tags=["scene"])
@@ -53,4 +53,3 @@ async def create_scene(file: UploadFile = File(...)) -> SceneResponse:
         n_sites=int(structure.num_sites),
         source="upload",
     )
-

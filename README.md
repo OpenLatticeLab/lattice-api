@@ -7,7 +7,7 @@ FastAPI service that converts CIF files to Crystal Toolkit Scene JSON. Includes 
 - Install (use a virtualenv):
   - `pip install -e .` or `pip install .`
 - Start dev server:
-  - `uvicorn app.main:app --reload`
+  - `uvicorn lattice_api.main:app --reload`
   - or `python -m lattice_api._cli` / `serve` script (when installed)
 
 Environment variables:
@@ -63,7 +63,7 @@ OpenAPI: visit `/docs` to see the `SceneResponse` model including the `source` f
 
 ### Structure
 ```
-app/
+lattice_api/
   main.py
   routers/
     scene.py          # /api/scene
@@ -78,6 +78,6 @@ pyproject.toml
 ```
 
 ### Roadmap
-- Prompt -> structure generation (`app/services/prompt_gen.py`)
-- VASP band/DOS calculations (`app/services/workflows.py`)
+- Prompt -> structure generation (`lattice_api/services/prompt_gen.py`)
+- VASP band/DOS calculations (`lattice_api/services/workflows.py`)
 - Validation/orchestration using CrewAI/MCP

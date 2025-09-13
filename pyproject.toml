@@ -31,4 +31,4 @@ serve = "lattice_api._cli:serve"
 line-length = 100
 
 [tool.setuptools]
-packages = ["app", "lattice_api"]
+packages = ["lattice_api"]

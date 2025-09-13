@@ -6,9 +6,9 @@ from typing import List
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.routers.health import router as health_router
-from app.routers.prompt import router as prompt_router
-from app.routers.scene import router as scene_router
+from lattice_api.routers.health import router as health_router
+from lattice_api.routers.prompt import router as prompt_router
+from lattice_api.routers.scene import router as scene_router
 
 
 def get_allowed_origins() -> List[str]:

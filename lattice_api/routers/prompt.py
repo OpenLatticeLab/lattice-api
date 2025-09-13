@@ -3,7 +3,7 @@ from __future__ import annotations
 from fastapi import APIRouter, status
 from fastapi.responses import JSONResponse
 
-from app.models import PromptRequest
+from lattice_api.models import PromptRequest
 
 
 router = APIRouter(prefix="/api", tags=["prompt"])
@@ -22,4 +22,3 @@ async def prompt_structure(req: PromptRequest):
             "source": "prompt",
         },
     )
-

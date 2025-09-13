@@ -143,3 +143,4 @@ def structure_to_scene_dict(structure) -> dict:
             status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
             detail=f"Could not generate scene: {exc}",
         ) from exc
+
