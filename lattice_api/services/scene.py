@@ -37,18 +37,30 @@ def structure_to_scene_dict(structure, *, radius_strategy: str = "uniform") -> d
         try:
             lat = getattr(structure, "lattice", None)
             if lat is not None:
-                m = lat.matrix  # 3x3
-                # Normalize basis vectors
-                def _norm(v):
-                    return (v[0] ** 2 + v[1] ** 2 + v[2] ** 2) ** 0.5 or 1.0
+                # Axes configuration via env
+                import os as _os
+                mode = _os.getenv("CT_AXES_MODE", "lattice").lower()  # 'lattice' or 'cartesian'
+                scale = float(_os.getenv("CT_AXES_SCALE", "1.6"))
+                head_len = float(_os.getenv("CT_AXES_HEAD_LENGTH", "0.32"))
+                head_wid = float(_os.getenv("CT_AXES_HEAD_WIDTH", "0.18"))
+                radius = float(_os.getenv("CT_AXES_RADIUS", "0.07"))
 
-                a = [float(m[0][0]), float(m[0][1]), float(m[0][2])]
-                b = [float(m[1][0]), float(m[1][1]), float(m[1][2])]
-                c = [float(m[2][0]), float(m[2][1]), float(m[2][2])]
-                an = _norm(a); bn = _norm(b); cn = _norm(c)
-                au = [a[0] / an, a[1] / an, a[2] / an]
-                bu = [b[0] / bn, b[1] / bn, b[2] / bn]
-                cu = [c[0] / cn, c[1] / cn, c[2] / cn]
+                if mode == "cartesian":
+                    au, bu, cu = [scale, 0.0, 0.0], [0.0, scale, 0.0], [0.0, 0.0, scale]
+                else:
+                    m = lat.matrix  # 3x3
+                    # Normalize basis vectors
+
+                    def _norm(v):
+                        return (v[0] ** 2 + v[1] ** 2 + v[2] ** 2) ** 0.5 or 1.0
+
+                    a = [float(m[0][0]), float(m[0][1]), float(m[0][2])]
+                    b = [float(m[1][0]), float(m[1][1]), float(m[1][2])]
+                    c = [float(m[2][0]), float(m[2][1]), float(m[2][2])]
+                    an = _norm(a); bn = _norm(b); cn = _norm(c)
+                    au = [a[0] / an * scale, a[1] / an * scale, a[2] / an * scale]
+                    bu = [b[0] / bn * scale, b[1] / bn * scale, b[2] / bn * scale]
+                    cu = [c[0] / cn * scale, c[1] / cn * scale, c[2] / cn * scale]
 
                 axes_group = {
                     "name": "axes",
@@ -57,27 +69,27 @@ def structure_to_scene_dict(structure, *, radius_strategy: str = "uniform") -> d
                             "type": "arrows",
                             "positionPairs": [[[0.0, 0.0, 0.0], au]],
                             "color": "red",
-                            "radius": 0.07,
-                            "headLength": 0.24,
-                            "headWidth": 0.14,
+                            "radius": radius,
+                            "headLength": head_len,
+                            "headWidth": head_wid,
                             "clickable": False,
                         },
                         {
                             "type": "arrows",
                             "positionPairs": [[[0.0, 0.0, 0.0], bu]],
                             "color": "green",
-                            "radius": 0.07,
-                            "headLength": 0.24,
-                            "headWidth": 0.14,
+                            "radius": radius,
+                            "headLength": head_len,
+                            "headWidth": head_wid,
                             "clickable": False,
                         },
                         {
                             "type": "arrows",
                             "positionPairs": [[[0.0, 0.0, 0.0], cu]],
                             "color": "blue",
-                            "radius": 0.07,
-                            "headLength": 0.24,
-                            "headWidth": 0.14,
+                            "radius": radius,
+                            "headLength": head_len,
+                            "headWidth": head_wid,
                             "clickable": False,
                         },
                     ],
