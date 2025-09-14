@@ -62,7 +62,7 @@ jobs:
 
             out = "\n".join(summary)
             open(os.environ['GITHUB_STEP_SUMMARY'], "a", encoding="utf-8").write(out)
-            PY
+PY
           else
             echo "### Coverage Summary" >> "$GITHUB_STEP_SUMMARY"
             echo "coverage.xml not found (tests may have failed before coverage was generated)." >> "$GITHUB_STEP_SUMMARY"
