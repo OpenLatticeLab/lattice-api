@@ -35,7 +35,7 @@ These are declared in `pyproject.toml`.
   - Behavior:
     - Validates `.cif` extension; returns 413 if >10MB
     - Parses CIF to `Structure` using pymatgen
-    - Generates Scene JSON using crystal-toolkit (falls back to a minimal scene dict if not available)
+    - Generates Scene JSON using Crystal Toolkit; returns 500 if Crystal Toolkit is unavailable
   - Response example:
     ```json
     {
@@ -60,6 +60,10 @@ These are declared in `pyproject.toml`.
   - Returns `{ "status": "ok" }`
 
 OpenAPI: visit `/docs` to see the `SceneResponse` model including the `source` field.
+
+### Logging
+- Uvicorn CLI: set the log level via `--log-level` (`critical|error|warning|info|debug`).
+  - Example: `uvicorn lattice_api.main:app --reload --log-level debug --access-log`
 
 ### Structure
 ```

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import logging
 from typing import Dict
 
 from fastapi import APIRouter, File, HTTPException, UploadFile, status
@@ -8,6 +9,8 @@ from lattice_api.models import SceneResponse
 from lattice_api.services.cif import ensure_cif_extension, ensure_size_limit, parse_cif_bytes
 from lattice_api.services.scene import structure_to_scene_dict
 
+
+logger = logging.getLogger(__name__)
 
 router = APIRouter(prefix="/api", tags=["scene"])
 
@@ -25,6 +28,7 @@ async def create_scene(file: UploadFile = File(...)) -> SceneResponse:
 
     data = await file.read()
     ensure_size_limit(len(data))
+    logger.info("/api/scene upload: filename=%s, size=%d bytes", file.filename, len(data))
 
     structure = parse_cif_bytes(data)
 
@@ -45,6 +49,7 @@ async def create_scene(file: UploadFile = File(...)) -> SceneResponse:
         formula = structure.composition.reduced_formula
     except Exception:
         formula = str(getattr(structure, "formula", ""))
+    logger.info("Scene built: formula=%s, n_sites=%d", formula, int(structure.num_sites))
 
     return SceneResponse(
         scene=scene_dict,
