@@ -96,6 +96,15 @@ OpenAPI: visit `/docs` to see the `SceneResponse` model including the `source` f
     - Element color scheme follows Crystal Toolkit default; configure via `CT_LEGEND_COLOR_SCHEME` (e.g., `VESTA`, `Jmol`).
     - Radius strategy defaults to `uniform`; other options: `atomic`, `covalent`, `van_der_waals`, `atomic_calculated`, `specified_or_average_ionic`.
 
+### Testing
+- Install dev dependencies:
+  - `pip install -e '.[dev]'`
+- Run tests:
+  - `pytest -q`
+- Notes:
+  - Tests exercise CIF parsing, scene JSON generation, and `/api/scene` + `/api/export` endpoints.
+  - The suite uses a small Si CIF fixture at `tests/data/si.cif` and relies on project runtime deps (pymatgen, crystal-toolkit).
+
 ### Structure
 ```
 lattice_api/
