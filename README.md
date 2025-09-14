@@ -108,11 +108,14 @@ lattice_api/
     cif.py            # CIF validation and parsing
     scene.py          # Structure -> Scene JSON (Crystal Toolkit)
     prompt_gen.py     # Placeholder: prompt-driven structure generation
-    workflows.py      # Placeholder: CrewAI/MCP/VASP orchestration (band/DOS)
+    workflows.py      # Placeholder: Agents/MCP/VASP orchestration (band/DOS)
 pyproject.toml
 ```
 
 ### Roadmap
-- Prompt -> structure generation (`lattice_api/services/prompt_gen.py`)
-- VASP band/DOS calculations (`lattice_api/services/workflows.py`)
-- Validation/orchestration using CrewAI/MCP
+- Prompt → structure generation: `lattice_api/services/prompt_gen.py`
+  - Convert natural-language prompts into candidate crystal structures (planned).
+- VASP band/DOS calculations: `lattice_api/services/workflows.py`
+  - Run first-principles workflows (band structure, DOS) for evaluation (planned).
+- Validation & orchestration (Agents/MCP): `lattice_api/services/workflows.py`
+  - Multi-agent coordination, validation, and pipeline orchestration (planned).

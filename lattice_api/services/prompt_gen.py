@@ -6,7 +6,7 @@ Future plan:
   using generative models or search (e.g., composition + prototype hints).
 - Validate structures with pymatgen, then run VASP workflows to compute band
   structure and DOS.
-- Orchestrate the workflow with CrewAI/MCP and verify outputs.
+- Orchestrate the workflow with Agents/MCP and verify outputs.
 """
 
 from typing import Any, Dict

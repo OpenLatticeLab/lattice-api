@@ -38,7 +38,7 @@ app = FastAPI(
     title="lattice-api",
     description=(
         "API for CIF -> Crystal Toolkit Scene conversion.\n\n"
-        "Future: Prompt -> structure generation -> VASP band/DOS -> CrewAI/MCP validation."
+        "Future: Prompt -> structure generation -> VASP band/DOS -> Agents/MCP validation."
     ),
     version="0.1.0",
 )
