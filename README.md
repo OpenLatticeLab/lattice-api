@@ -12,9 +12,7 @@ FastAPI service that converts CIF files to Crystal Toolkit Scene JSON. Includes 
 
 Environment variables:
 - `CORS_ALLOW_ORIGINS`: comma-separated origins. If unset, none are allowed via explicit list.
-- `CORS_ALLOW_ORIGIN_REGEX`: optional regex to match origins (e.g. `^https?://(localhost|127\\.0\\.0\\.1)(:\\d+)?$` or `^https?://203\\.0\\.113\\.10(:\\d+)?$`). If set, it takes precedence and the explicit list is ignored. Default allows localhost/127.0.0.1 any port.
-- `HOST`, `PORT`: used by the CLI entrypoint (default `0.0.0.0:8000`).
-- `CT_LEGEND_COLOR_SCHEME`: default color scheme for elements in scenes (`VESTA` by default; options: `Jmol`, `VESTA`, `accessible`).
+- `CORS_ALLOW_ORIGIN_REGEX`: optional regex to match origins (e.g. `^https?://(localhost|127\\.0\\.0\\.1)(:\\d+)?$` or `^https?://203\\.0\\.113\\.10(:\\d+)?$`).
 
 Examples:
 - Allow localhost any port (dev): `CORS_ALLOW_ORIGIN_REGEX=^https?://(localhost|127\\.0\\.0\\.1)(:\\d+)?$`
