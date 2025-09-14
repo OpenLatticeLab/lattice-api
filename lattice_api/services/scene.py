@@ -1,9 +1,6 @@
 from __future__ import annotations
 
-import logging
 from fastapi import HTTPException, status
-
-logger = logging.getLogger(__name__)
 
 
 def structure_to_scene_dict(structure) -> dict:
@@ -16,13 +13,10 @@ def structure_to_scene_dict(structure) -> dict:
         from crystal_toolkit.renderables.structure import (  # type: ignore
             get_structure_scene,
         )
-        logger.debug("Generating CrystalToolkitScene via CTK get_structure_scene().")
         scene_obj = get_structure_scene(structure)
         scene_json = scene_obj.to_json()
-        logger.debug("CrystalToolkitScene generated successfully (keys: %s)", list(scene_json.keys()))
         return scene_json
-    except Exception as exc:
-        logger.exception("Failed to generate CrystalToolkitScene using CTK: %s", exc)
+    except Exception:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=(

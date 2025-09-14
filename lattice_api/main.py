@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import logging
 import os
 from typing import List
 
@@ -43,13 +42,6 @@ app = FastAPI(
 # CORS
 _origin_regex = get_allowed_origin_regex()
 _allowed_origins = [] if _origin_regex else get_allowed_origins()
-
-logger = logging.getLogger(__name__)
-logger.info(
-    "Configuring CORS: allow_origin_regex=%r, allow_origins=%s",
-    _origin_regex,
-    _allowed_origins,
-)
 
 app.add_middleware(
     CORSMiddleware,

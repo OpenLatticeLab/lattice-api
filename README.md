@@ -61,10 +61,6 @@ These are declared in `pyproject.toml`.
 
 OpenAPI: visit `/docs` to see the `SceneResponse` model including the `source` field.
 
-### Logging
-- Uvicorn CLI: set the log level via `--log-level` (`critical|error|warning|info|debug`).
-  - Example: `uvicorn lattice_api.main:app --reload --log-level debug --access-log`
-
 ### Structure
 ```
 lattice_api/
