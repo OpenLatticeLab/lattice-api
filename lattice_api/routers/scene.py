@@ -12,7 +12,9 @@ router = APIRouter(prefix="/api", tags=["scene"])
 
 
 @router.post("/scene", response_model=SceneResponse)
-async def create_scene(file: UploadFile = File(...)) -> SceneResponse:
+async def create_scene(
+    file: UploadFile = File(...),
+) -> SceneResponse:
     """Accept a .cif file (<=10MB), parse it, and return a Scene JSON.
 
     Errors:

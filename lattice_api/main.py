@@ -8,7 +8,11 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from lattice_api.routers.health import router as health_router
 from lattice_api.routers.prompt import router as prompt_router
+from lattice_api.routers.export import router as export_router
 from lattice_api.routers.scene import router as scene_router
+
+# Set Crystal Toolkit default color scheme if not provided externally
+os.environ.setdefault("CT_LEGEND_COLOR_SCHEME", "VESTA")
 
 
 def get_allowed_origins() -> List[str]:
@@ -56,6 +60,7 @@ app.add_middleware(
 app.include_router(health_router)
 app.include_router(scene_router)
 app.include_router(prompt_router)
+app.include_router(export_router)
 
 
 @app.get("/")
