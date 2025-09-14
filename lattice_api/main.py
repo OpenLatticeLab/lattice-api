@@ -45,7 +45,7 @@ app = FastAPI(
 
 # CORS
 _origin_regex = get_allowed_origin_regex()
-_allowed_origins = [] if _origin_regex else get_allowed_origins()
+_allowed_origins = get_allowed_origins()
 
 app.add_middleware(
     CORSMiddleware,
