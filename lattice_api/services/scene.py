@@ -19,7 +19,7 @@ def structure_to_scene_dict(structure, *, radius_strategy: str = "uniform") -> d
         # Ensure CTK monkey-patches StructureGraph.get_scene
         from crystal_toolkit.renderables import structuregraph as _ct_structuregraph  # type: ignore  # noqa: F401
 
-        graph = StructureGraph.with_local_env_strategy(structure, MinimumDistanceNN())
+        graph = StructureGraph.from_local_env_strategy(structure, MinimumDistanceNN())
 
         # Render with MP-like defaults: include image atoms, bonds outside cell, hide incomplete
         # Use CTK default color scheme (configurable via CT_LEGEND_COLOR_SCHEME)
